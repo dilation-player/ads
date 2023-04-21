@@ -1,7 +1,7 @@
 {
   "name": "@dilation-player/ads",
   "description": "ADS extension use in Dilation Player",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
