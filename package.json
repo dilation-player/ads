@@ -1,14 +1,17 @@
 {
   "name": "@dilation-player/ads",
   "description": "ADS extension use in Dilation Player",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
+    "cp": "copyfiles -u 1 src/**/*.html src/**/*.css dist/",
     "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
+    "copyfiles": "^2.4.1",
+    "rimraf": "^5.0.0",
     "typescript": "^5.0.4"
   }
 }
