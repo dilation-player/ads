@@ -1,8 +1,12 @@
 import conf from './config';
 import Ads from './ads';
+import './style.css';
 
 class AdsExtension {
-  constructor({context}) {
+  context: any;
+  schedule: any;
+
+  constructor({context}: any) {
     this.context = context;
     this.schedule = {};
     context.$ads = this;
@@ -10,7 +14,7 @@ class AdsExtension {
   }
 
   config() {
-    let newConfig = {
+    let newConfig: any = {
       ...conf,
     };
     if (this.context.config.ads) newConfig.ads = this.context.config.ads;
@@ -23,13 +27,13 @@ class AdsExtension {
     });
   }
 
-  add(ads){
+  add(ads: any){
     if (ads) this.context.$config.set({
       ads
     });
 
     this.schedule = {};
-    ads.forEach(data => {
+    ads.forEach((data: any) => {
       this.schedule['at-' + data.time] = data;
     });
   }

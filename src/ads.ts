@@ -1,5 +1,16 @@
 class Ads {
-  constructor({ context }) {
+  context: any;
+  ads: any;
+  adsContent: any;
+  panel: any;
+  adsClose: any;
+  timer: any;
+  counter: number = 0;
+  data: any;
+  isRunning: boolean = false;
+  videoState: boolean = false;
+
+  constructor({ context }: any) {
     this.context = context;
     this.ads = this.context.$config.node('ads');
     this.adsContent = this.context.$config.node('adsContent');
@@ -7,7 +18,7 @@ class Ads {
     this.adsClose = this.context.$config.node('adsClose');
   }
 
-  setContent(data){
+  setContent(data: any){
     if (data.content.type == 'image') {
       if (data.type == 'full') this.adsContent.html('<div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center;"><img src="' + data.content.src + '" style="max-height: 100%; max-width: 100%"/></div>');
       else this.adsContent.html('<img src="' + data.content.src + '" style="max-height: 100%; max-width: 100%"/>');
@@ -41,7 +52,7 @@ class Ads {
     this.timer = null;
     this.counter = 0;
 
-    let timeButton = (skip) => {
+    let timeButton = (skip: boolean) => {
       if (this.counter == 0) return;
       if (skip) this.adsClose.html('Skip ad (' + this.counter + 's)');
       else this.adsClose.html('Will close in ' + this.counter + 's');
@@ -68,7 +79,7 @@ class Ads {
     }
   }
 
-  run(data) {
+  run(data: any) {
     this.close(false);
     this.isRunning = true;
     this.data = data;
@@ -84,7 +95,7 @@ class Ads {
     this.setContent(this.data);
   }
 
-  close(byuser) {
+  close(byuser: any) {
     if (!this.isRunning) return;
     if (byuser && this.data.duration && !this.data.close) return;
     window.clearTimeout(this.timer);
